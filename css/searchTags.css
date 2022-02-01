@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+}
+
+.select__box {
+    position: relative;
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    border: solid 0.5px;
+}
+
+.select__box .options__container {
+    background: white;
+    max-height: 0;
+    width: 200px;
+    opacity: 0;
+    transition: all 0.4s;
+    border-radius: 5px;
+    overflow: hidden;
+    position: absolute;
+    top: 50px;
+
+    order: 1;
+}
+
+.selected {
+    height: 29px;
+    background: whitesmoke;
+    position: relative;
+
+    order: 0;
+}
+
+.selected::after {
+    content: "";
+    background: url("../image/keyboard_arrow_down_black_24dp.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 10px;
+    top: 1px;
+
+    transition: all 0.4s;
+}
+
+.select__box .options__container.active {
+    max-height: 190px;
+    opacity: 1;
+    overflow-y: scroll;
+    margin-top: 14px;
+}
+
+.select__box .options__container.active + .selected::after {
+    transform: rotate(180deg);
+    top: -6px;
+}
+
+.select__box .options__container::-webkit-scrollbar {
+    width: 8px;
+    background: rgba(224,222,222,0.08);
+    border-radius: 0 8px 8px 0;
+}
+
+.select__box .options__container::-webkit-scrollbar-thumb {
+    background: white;
+
+}
+
+.select__box .option {
+    padding: 6px 24px;
+    cursor: pointer;
+}
+
+.select__box .option:hover {
+    background: rgba(0,255,223,0.08);
+}
+
+.select__box label {
+    cursor: pointer;
+}
+
+.select__box .option .radio {
+    display: none;
+}
+
+.search__box input {
+    width: 89%;
+    padding: 0.5px 10px;
+    position: absolute;
+    z-index: 100;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s;
+}
+
+.search__box input:focus {
+    outline: none;
+}
+
+.select__box .options__container.active ~ .search__box input {
+    opacity: 1;
+    pointer-events: auto;
+}
+
